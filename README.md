@@ -40,7 +40,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 ## :zap: Como usar
 
 - Faça um clone desse repositório: 
-`git clone https://github.com/Giovanni-786/ignews.git`
+`git clone https://github.com/Giovanni-786/desafioProcedo.git`
 
 - Instale as dependências: `composer install --prefer-dist`
 - Inserir as variáveis de ambiente no arquivo .env
