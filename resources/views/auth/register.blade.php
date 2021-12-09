@@ -128,7 +128,7 @@
                                       type="radio"
                                       name="situation"
                                       id="situation"
-                                      value="t"
+                                      value="1"
                                     />
                                     <label class="form-check-label" for="flexRadioDefault1"> Ativo </label>
                                   </div>
@@ -139,7 +139,7 @@
                                       type="radio"
                                       name="situation"
                                       id="situation"
-                                      value="f"
+                                      value="0"
                                     />
                                     <label class="form-check-label" for="flexRadioDefault1"> Inativo </label>
                                   </div>

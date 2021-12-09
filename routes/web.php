@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     if(Auth::check() === true){
-        return view('admin.dashboard');
+        return redirect()->route('admin');    
     }else{
         return view('admin.loginForm');
     }
@@ -34,10 +34,9 @@ Route::get('/admin/login', 'AuthController@loginInfo')->name('admin.login');
 Route::post('/admin/login/do', 'AuthController@login')->name('admin.login.do');
 
 
+Route::get('/admin/users', 'UserController@all');
 
-Route::get('/admin/{id}', 'UserController@show');
-
+Route::get('/admin/{id}', 'ClientController@show');
 Route::get('/admin/{id}/clients', 'ClientController@index')->name('admin.clients');
-
 Route::post('/admin/clients', 'ClientController@create')->name('admin.clients.do');
 Route::delete('admin/{id}/clients', 'ClientController@destroy');

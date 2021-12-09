@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header justify-content-center">{{ __('Dashboard') }}</div>
 
                 
                 <div class="card-body">
@@ -15,18 +15,24 @@
                         </div>
                     @endif
 
-                    <h2>Seja bem vindo(a)!</h2>
-                    <div class="mt-2 col-md-12">
-                        <button type="button" class="btn btn-primary"><a href="/register" style="color: white; text-decoration: none">Cadastrar novos usuários</a></button> 
+                        <div class="d-flex justify-content-center">
+
+                            <h2 style="display: block">Seja bem vindo(a)!</h2>  
+                        </div>
+                    
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary" style="margin-top:20px"><a href="/register" style="color: white; text-decoration: none">Cadastrar novos usuários</a></button> 
                     </div>
 
-                    <div class="mt-2 col-md-12">
+                    <div class="d-flex justify-content-center" style="margin-top:20px">
                         <button type="button" class="btn btn-primary"> <a href="/admin/{{$user_id ?? ''}}/clients" style="color: white; text-decoration: none">Cadastrar novos clientes</a></button>  
                     </div>
 
-                    <div class="mt-2 col-md-12">
-                        <button type="button" class="btn btn-primary"><a href="/admin/{{$user_id ?? ''}}" style="color: white; text-decoration: none">Listar clientes</a></button>
+                    <div class="d-flex justify-content-center" style="margin-top: 20px;">
+                        <button type="button" class="btn btn-primary" style="margin-right: 20px"><a href="/admin/{{$user_id ?? ''}}" style="color: white; text-decoration: none">Listar clientes</a></button>
+                        <button type="button" class="btn btn-primary"><a href="/admin/users" style="color: white; text-decoration: none">Listar usuários</a></button> 
                     </div>
+
                     
                     </div>
                     
