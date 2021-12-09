@@ -5,12 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Registro de clientes') }}</div>
+                
 
+                
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    
+                    <form method="POST" action="{{ route('admin.clients.do') }}">
                         @csrf
-
 
                         @if($errors->all())
                             @foreach ($errors->all() as $error)
@@ -38,68 +40,29 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="document" class="col-md-4 col-form-label text-md-right">{{ __('Document') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="document" type="text" class="form-control" name="document">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
+                                <input id="phone" type="number" class="form-control" name="phone" value="{{ old('phone') }}" required autocomplete="state" autofocus>
 
-
-                        <div class="form-group row">
-                            <label for="Genre" class="col-md-4 col-form-label text-md-right">{{ __('Genre') }}</label>
-
-                            <div class="col-md-6">
-                                <div class="form-check">
-                                    <input
-                                      class="form-check-input"
-                                      type="radio"
-                                      name="genre"
-                                      id="genre"
-                                      value="male"
-                                    />
-                                    <label class="form-check-label" for="flexRadioDefault1"> Masculino </label>
-                                  </div>
-
-                                  <div class="form-check">
-                                    <input
-                                      class="form-check-input"
-                                      type="radio"
-                                      name="genre"
-                                      id="genre"
-                                      value="female"
-                                    />
-                                    <label class="form-check-label" for="flexRadioDefault1"> Feminino </label>
-                                  </div>
-
-                                  <div class="form-check">
-                                    <input
-                                      class="form-check-input"
-                                      type="radio"
-                                      name="genre"
-                                      id="genre"
-                                      value="other"
-                                    />
-                                    <label class="form-check-label" for="flexRadioDefault1"> Outro </label>
-                                  </div>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
-
-                            <input type="tel" required="required" maxlength="15" name="phone"/>
-
+                            <label for="origin" class="col-md-4 col-form-label text-md-right">{{ __('Origin') }}</label>
+                            <div class="col-md-6">
+                                <input id="origin" type="text" class="form-control" name="origin">
                             </div>
                         </div>
+
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('State') }}</label>
@@ -128,7 +91,7 @@
                                       type="radio"
                                       name="situation"
                                       id="situation"
-                                      value="t"
+                                      value="1"
                                     />
                                     <label class="form-check-label" for="flexRadioDefault1"> Ativo </label>
                                   </div>
@@ -139,7 +102,7 @@
                                       type="radio"
                                       name="situation"
                                       id="situation"
-                                      value="f"
+                                      value="0"
                                     />
                                     <label class="form-check-label" for="flexRadioDefault1"> Inativo </label>
                                   </div>
@@ -148,13 +111,21 @@
                         </div>
 
 
-                        
+                        <div class="form-group row">
+                            <label for="observation" class="col-md-4 col-form-label text-md-right">{{ __('Observation') }}</label>
 
+                            <div class="col-md-6">
+                                <input id="observationy" type="text" class="form-control @error('observation') is-invalid @enderror" name="observation" value="{{ old('city') }}">
+                            </div>
+                        </div>
+
+                        <input type="number" readonly id="Contato" class="read" name="user_id" value="{{$user_id['data']->id ?? ''}}" required  hidden>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Criar') }}
                                 </button>
+                                <button type="button" class="btn btn-primary"><a href="/admin" style="color: white; text-decoration: none">Voltar</a></button>
                             </div>
                         </div>
                     </form>

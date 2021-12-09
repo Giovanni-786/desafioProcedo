@@ -26,7 +26,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Rotas para autenticação do usuário.
 Route::get('/admin', 'AuthController@dashboard')->name('admin');
-Route::get('/admin/login', 'AuthController@loginInfo')->name('admin.login');
 Route::get('/admin/logout', 'AuthController@logout')->name('admin.logout');
-ROute::post('/admin/login/do', 'AuthController@login')->name('admin.login.do');
+Route::get('/admin/login', 'AuthController@loginInfo')->name('admin.login');
+Route::post('/admin/login/do', 'AuthController@login')->name('admin.login.do');
+
+
+
+Route::get('/admin/{id}', 'UserController@show');
+
+Route::get('/admin/{id}/clients', 'ClientController@index')->name('admin.clients');
+
+Route::post('/admin/clients', 'ClientController@create')->name('admin.clients.do');
+Route::delete('admin/{id}/clients', 'ClientController@destroy');

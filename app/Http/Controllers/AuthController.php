@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function dashboard(){
+    public function dashboard(Request $request){
+
+        // $user = User::where('id', $request->id)->first();
+        // $user_id = $user->id;
+
+        $user = Auth::user();
+        $user_id = $user->id ?? "";
+
         if(Auth::check() === true){
-            return view('admin.dashboard');
+            return view('admin.index', ["user_id"=>$user_id]);
         }
 
-        return redirect()->route('admin.login');
+        return redirect()->route('admin.login');        
         
     }
 
@@ -23,6 +31,9 @@ class AuthController extends Controller
 
     public function login(Request $request){
         
+        $user = User::where('email', $request->email)->first();
+        $user_id = $user->id;
+
         if(!filter_var($request->email, FILTER_VALIDATE_EMAIL)){
             return redirect()->back()->withInput()->withErrors(['O e-mail informado é inválido!']);
         }
@@ -33,11 +44,20 @@ class AuthController extends Controller
         ];
 
         if(Auth::attempt($credentials)){
-            return redirect()->route('admin');
+            return view('admin.index', ["user_id"=>$user_id]);
         }else{
             return redirect()->back()->withInput()->withErrors(['Login ou senha inválido!']);
         }
         
+    }
+
+    public function clients(){
+        if(Auth::check() === false){
+            return view('admin.login');
+        }else{
+            return view('admin.clients');
+        }
+
     }
 
     public function logout()

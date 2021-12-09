@@ -15,16 +15,16 @@ class CreateTableClients extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('email');
-            $table->string('document');
-            $table->string('phone');
-            $table->string('origin');
-            $table->string('state');
-            $table->string('city');
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('document')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('origin')->nullable();
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
             $table->boolean('situation');
-            $table->string('observation');
-            $table->unsignedBigInteger('user_id');
+            $table->string('observation')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

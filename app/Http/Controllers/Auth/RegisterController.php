@@ -38,7 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        
     }
 
     /**
@@ -68,13 +68,12 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
-
-    
+    {    
         if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
             return redirect()->back()->withInput()->withErrors(['O e-mail informado é inválido!']);
         }
-        return User::create([
+
+         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -84,5 +83,9 @@ class RegisterController extends Controller
             'city' => $data['city'],
             'situation' => $data['situation']
         ]);
+
+        
+
+        
     }
 }

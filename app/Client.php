@@ -2,18 +2,15 @@
 
 namespace App;
 
-use Facade\FlareClient\Http\Client;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Schema\ForeignKeyDefinition;
 
-class User extends Authenticatable
+class Client extends Authenticatable
 {
-    
 
+   
     use Notifiable;
 
     /**
@@ -22,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-       'id', 'name', 'email', 'password', 'genre', 'phone', 'state', 'city', 'situation'
+       'user_id', 'name', 'email', 'document', 'phone', 'origin', 'state', 'city', 'situation', 'observation'
     ];
 
     /**
@@ -43,10 +40,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-    public function Clients(){
-        return $this->hasMany('App\Client');
+    public function User(){
+        return $this->belongsTo(user::class);
     }
+
 
 }
 
