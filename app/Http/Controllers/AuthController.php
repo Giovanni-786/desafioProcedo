@@ -31,8 +31,7 @@ class AuthController extends Controller
 
     public function login(Request $request){
         
-        $user = User::where('email', $request->email)->first();
-        $user_id = $user->id;
+        
 
         if(!filter_var($request->email, FILTER_VALIDATE_EMAIL)){
             return redirect()->back()->withInput()->withErrors(['O e-mail informado é inválido!']);
@@ -43,7 +42,11 @@ class AuthController extends Controller
             'password'=> $request->password
         ];
 
+        
+
         if(Auth::attempt($credentials)){
+            $user = User::where('email', $request->email)->first();
+            $user_id = $user->id;
             return view('admin.index', ["user_id"=>$user_id]);
         }else{
             return redirect()->back()->withInput()->withErrors(['Login ou senha inválido!']);
