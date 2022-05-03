@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -52,12 +53,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/'],
-            'genre' => ['required', 'string', 'max:20'],
-            'phone' => ['required', 'string', 'max:30'],
-            'state' => ['required', 'string', 'max:50'],
-            'city' => ['required', 'string', 'max:50'],
-            'situation' => ['required', 'string', 'max:10']
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/']
         ]);
     }
 
@@ -74,14 +70,9 @@ class RegisterController extends Controller
         }
 
          return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'genre' => $data['genre'],
-            'phone' => $data['phone'],
-            'state' => $data['state'],
-            'city' => $data['city'],
-            'situation' => $data['situation']
+            'name' => Crypt::encryptString($data['name']),
+            'email' => Crypt::encryptString($data['email']),
+            'password' => Crypt::encryptString($data['password']),
         ]);
 
         

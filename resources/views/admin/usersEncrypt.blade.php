@@ -2,26 +2,22 @@
 @section('content') 
    
 <style>
-  .row-data{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+td{
+ max-width: 100px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}
 
 </style>
-
-<?php
-  
-?>
     <div class="col-md-10 offset-md-1 dashboard-title-container">
-        <h2>Usuários cadastrados</h2>
-        <button type="button" class="btn btn-primary"><a href="{{route('admin.usersencrypt')}}" style="color: white; text-decoration: none">Listar usuários criptografados</a></button>
+        <h2>Usuários com criptografia</h2>
     </div>
 
     <div class="col-md-5 offset-md-9 dashboard-title-container" style="margin-bottom: 20px">
       <button type="button" class="btn btn-primary"><a href='/register' style="color: white; text-decoration: none">Cadastrar novos usuários</a></button>
       
-      <button type="button" class="btn btn-primary"><a href="/admin" style="color: white; text-decoration: none">Voltar</a></button>
+      <button type="button" class="btn btn-primary"><a href="/admin/users" style="color: white; text-decoration: none">Voltar</a></button>
   </div>
 
     <div class="col-md-10 offset-md-1 dashboard-clients-container">
@@ -43,8 +39,8 @@
             <tbody>
                 @foreach ($users['data'] ?? '' as $user)
                      <tr>
-                       <td class="row-data">{{Crypt::decryptString($user->name)}}</td>
-                       <td>{{Crypt::decryptString($user->email)}}</td>
+                       <td class="row-data">{{$user->name}}</td>
+                       <td>{{$user->email}}</td>
                      </tr>
                 @endforeach
                 

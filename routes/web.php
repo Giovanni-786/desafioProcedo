@@ -34,9 +34,11 @@ Route::get('/admin/login', 'AuthController@loginInfo')->name('admin.login');
 Route::post('/admin/login/do', 'AuthController@login')->name('admin.login.do');
 
 
-Route::get('/admin/users', 'UserController@all');
+Route::get('/admin/users', 'UserController@listUsers');
+Route::get('/admin/usersencrypt', 'UserController@listUsersEncrypt')->name('admin.usersencrypt');
 
 Route::get('/admin/{id}', 'ClientController@show');
 Route::get('/admin/{id}/clients', 'ClientController@index')->name('admin.clients');
 Route::post('/admin/clients', 'ClientController@create')->name('admin.clients.do');
 Route::delete('admin/{id}/clients', 'ClientController@destroy');
+
